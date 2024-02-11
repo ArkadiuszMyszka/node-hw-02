@@ -1,6 +1,7 @@
 import schema from "../validators/users/signupValidator.js";
 import newAvatar from "../service/gravatar.js";
 import User from "../service/schemas/user.js";
+import { v4 as uuidv4 } from "uuid";
 
 async function signupUser(req, res, next) {
   const { email, password } = req.body;
@@ -15,7 +16,7 @@ async function signupUser(req, res, next) {
       return res.status(409).json({ message: "Email in use" });
     }
     try {
-      const newUser = new User({ email, password, avatarURL: avatar });
+      const newUser = new User({ email, password, avatarURL: avatar, verificationToken: uuidv4()  });
       await newUser.setPassword(password);
       await newUser.save();
       return res.status(201).json({ message: "User created" });

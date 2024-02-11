@@ -8,6 +8,7 @@ import currentUser from "../../controllers/users/currentRouters.js";
 import avatarsUser from "../../controllers/users/avatarsRouters.js";
 import authMiddleware from "../../middlewares/jwt.js";
 import { uploadMiddleware, jimpProcess } from "../../middlewares/avatars.js";
+import verifyUser from "../../controllers/users/verifyRouters.js"
 
 const router = Router();
 
@@ -23,5 +24,6 @@ router.patch(
   jimpProcess,
   avatarsUser
 );
+router.get("/verify/:verificationToken", verifyUser);
 
 export default router;

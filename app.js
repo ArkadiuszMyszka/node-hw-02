@@ -3,6 +3,7 @@ import logger from "morgan";
 import cors from "cors";
 import "dotenv/config";
 
+
 import { router as contactsRouter } from "./routes/api/contacts.js";
 import usersRouter from "./routes/api/users.js";
 import setJWTStrategy from "./config/jwt.js";
@@ -19,6 +20,9 @@ setJWTStrategy();
 
 app.use("/", contactsRouter);
 app.use("/users", usersRouter);
+
+
+
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
