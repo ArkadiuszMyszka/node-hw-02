@@ -13,6 +13,10 @@ async function loginUser(req, res, next) {
     if (!user) {
       return res.status(401).json({ message: "Email or password is wrong" });
     }
+    if (user.verify === false) {
+      console.log(user.verify);
+      return res.status(401).json({ message: "Email not verified" });
+    }
 
     const isPasswordCorrect = await user.validatePassword(password);
     if (isPasswordCorrect) {
