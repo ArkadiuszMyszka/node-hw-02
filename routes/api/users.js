@@ -9,6 +9,7 @@ import avatarsUser from "../../controllers/users/avatarsRouters.js";
 import authMiddleware from "../../middlewares/jwt.js";
 import { uploadMiddleware, jimpProcess } from "../../middlewares/avatars.js";
 import verifyUser from "../../controllers/users/verifyRouters.js"
+import reSendVerify from "../../controllers/users/reSendVerify.js";
 
 const router = Router();
 
@@ -25,5 +26,6 @@ router.patch(
   avatarsUser
 );
 router.get("/verify/:verificationToken", verifyUser);
+router.post("/verify", reSendVerify);
 
 export default router;
